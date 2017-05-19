@@ -17,6 +17,10 @@ const appendItem = () => {
   render();
 };
 
+//Задание 1: увеличение счётчика не работает т.к. Реакт автоматически не делает функцию(handleClick) метод класса 
+// для их связи применяется Autobinding this.handleClick = this.handleClick.bind(this)
+// таким образом handleClick становится методом класса Counter
+
 class Counter extends React.PureComponent {
   constructor() {
     super();
@@ -41,6 +45,11 @@ class Counter extends React.PureComponent {
 }
 
 const ListItem = ({ item }) => <li>{item.id} - {item.name} - <Counter /></li>;
+
+// Для бонусного задания решение такое: проблема в том, что при рендере элементов списка 
+// Реакт ориентируется на key index, в данном примере он должен соответствовать item.id
+// а не порядковому номеру элемента(idx) 
+
 
 const renderListItem = (item) => <ListItem key={item.id} item={item} />;
 
