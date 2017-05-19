@@ -21,18 +21,24 @@ const appendItem = () => {
 // для их связи применяется Autobinding this.handleClick = this.handleClick.bind(this)
 // таким образом handleClick становится методом класса Counter
 
+// забыл что arrow func делает это автоматически -> вернул обратно
+
+// и ещё нельзя напрямую(явно) изменять state, нужно использовать конструкцию setState
+// this.setState({count: this.state.count + 1})
+
 class Counter extends React.PureComponent {
   constructor() {
     super();
     this.state = {
       count: 0
     };
-    this.handleClick = this.handleClick.bind(this);
+    //this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
-    this.setState({ count: this.state.count + 1 });
-  }
+  // handleClick() {
+  //   this.setState({ count: this.state.count + 1 });
+  // }
+  handleClick = () => this.setState({count: this.state.count + 1})
   render() {
     const { count } = this.state;
     return (
